@@ -1,9 +1,9 @@
 version: 0.2
-
 phases:
   build:
     commands:
       - aws s3 sync . $BUCKET_NAME --exclude ".git/*"
+      - aws cloudfront create-invalidation --distribution-id <DIST_ID> --paths "/*"
   post_build:
     commands:
       - echo Success!
